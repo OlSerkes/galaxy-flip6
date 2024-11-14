@@ -1,0 +1,706 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap')
+
+$bp-mobile: 479.98px
+$bp-tablet: 767.98px
+$bp-hd-desktop: 1024px
+$maxWidthContainer: 1023
+
+@mixin adaptiv-value($property, $startSize, $minSize)
+   $addSize: $startSize - $minSize
+   #{$property}: $startSize + px
+   @media (max-width: #{$maxWidthContainer + px})
+      #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}))
+
+@mixin fonts($fontSize, $lineHeight)
+   font:
+      size: $fontSize
+   line:
+      height: $lineHeight
+
+@mixin flex-box($justifyContent, $alignItems)
+   display: flex
+   justify-content: $justifyContent
+   align-items: $alignItems
+
+@mixin bg-image($url)
+   background:
+      image: $url
+   background:
+      repeat: no-repeat
+   background:
+      position: top center
+   background:
+      size: cover
+
+@mixin position($position, $zIndex)
+   position: $position
+   z-index: $zIndex
+
+@mixin adaptive-size($property, $minSize, $maxSize, $maxWidth)
+   $size: calc( #{$minSize}px + ($maxSize - $minSize) * ((100vw - 320px)/($maxWidth - 320)))
+   #{$property}: $size
+
+%flex-img
+   position: relative
+   z-index: 5
+   padding-bottom: 58%
+   img
+      width: 100%
+      height: 100%
+      position: absolute
+      z-index: 6
+      object-fit: cover
+      top: 0
+      left: 0
+
+#rkt-galaxiFlip6
+   font-family: 'Roboto', sans-serif
+   width: 100%
+   height: auto
+   position: relative
+   overflow: hidden
+   background: #fff
+   h2, h3, h4, h5, h6, p
+      margin: 0
+      padding: 0
+      line-height: 1.2
+      text-align: left
+      text-transform: none
+   ul
+      margin: 0
+      padding: 0
+      list-style-type: none
+   img
+      display: block
+      max-width: 100%
+      opacity: 1
+      margin: 0
+      &:hover
+         opacity: 1
+   h2
+      @include adaptiv-value("font-size", 42, 22)
+      font-weight: 900
+      margin: 10px 0
+      text-align: center
+   h3
+      @include adaptiv-value("font-size", 28, 18)
+      font-weight: 700
+      margin: 10px 0
+   h4
+      @include adaptiv-value("font-size", 22, 16)
+      font-weight: 600
+      margin: 10px 0
+      text-transform: uppercase
+      text-align: center
+   h5
+      @include adaptiv-value("font-size", 20, 16)
+      font-weight: 600
+      margin: 10px 0
+   p
+      @include adaptiv-value("font-size", 18, 16)
+      font-weight: 400
+      &::first-letter
+         padding-left: 0
+   ul
+      margin-left: 25px
+      li
+         @include adaptiv-value("font-size", 18, 16)
+         margin-bottom: 10px
+
+//==============================================================================================================================
+
+#rkt-galaxiFlip6 .rkt-galaxiFlip6
+   &__container
+      box-sizing: border-box
+      max-width: 1006px
+      overflow: hidden
+      padding: 0 10px
+      margin: 0 auto
+   &__bg
+      background-color: #000
+
+#rkt-galaxiFlip6 .row-rkt-galaxiFlip6
+   &__inner
+      @include flex-box($justifyContent: center, $alignItems: center)
+      flex-direction: column
+   &__text
+      padding: 10px
+      h3, p
+         text-align: center
+   &__image
+      img
+         margin: 0 auto
+
+#rkt-galaxiFlip6 .galaxiFlip6-top
+   &__inner
+      background-color: #f4f4f4
+
+#rkt-galaxiFlip6 .galaxiFlip6-brand
+   @include flex-box(center, center)
+   img
+      margin: 0 5px
+   picture
+      display: block
+   span
+      @include adaptiv-value("font-size", 30, 18)
+      font-weight: 600
+
+#rkt-galaxiFlip6 .galaxiFlip6-textBox
+   &__brand
+      padding: 15px 10px
+   &__text
+      padding: 10px 5px
+      h3, p
+         text-align: center
+   &__image
+      img
+         margin: 0 auto
+
+#rkt-galaxiFlip6 .galaxiFlip6-characteristics-slider
+   &__inner
+      @include bg-image(url("../img/bg03.jpg"))
+      overflow: hidden
+   &__swiper
+      width: auto
+      overflow: visible
+   &__slide
+      padding-bottom: 30px
+   &__card
+      @include flex-box(space-between, flex-start)
+      flex-direction: column
+      padding: 15px 10px 0
+   &__text
+      padding: 0px 7px
+      h3
+         color: #fff
+         text-align: left
+   &__image
+      display: block
+
+#rkt-galaxiFlip6 .swiper-button-next
+   display: none
+   top: 60%
+   right: 20px
+   transform: translateY(-50%)
+   &::after
+      content: ''
+      @include position(absolute, 7)
+      @include bg-image($url: url('../img/next.png'))
+      width: 20px
+      height: 20px
+
+#rkt-galaxiFlip6 .swiper-button-prev
+   display: none
+   top: 60%
+   left: 20px
+   transform: translateY(-50%)
+   &::after
+      content: ''
+      @include position(absolute, 7)
+      @include bg-image($url: url('../img/prev.png'))
+      width: 20px
+      height: 20px
+
+#rkt-galaxiFlip6 .swiper-scrollbar
+   width: 90%
+   margin: 10px
+   background: #5b5b5b
+
+#rkt-galaxiFlip6 .swiper-scrollbar-drag
+   background: #ffffff
+
+#rkt-galaxiFlip6 .galaxiFlip6-impact
+   &__inner
+      margin: 15px 0
+   &__title
+      padding: 0 5px
+   &__text
+      padding: 0 5px
+      p
+         text-align: center
+
+#rkt-galaxiFlip6 .galaxiFlip6-colors
+   &__header
+      margin: 15px 0
+   &__title, &__text
+      padding: 0 5px
+      h2, p
+         text-align: center
+   &__carousel
+      margin: 20px 0
+
+#rkt-galaxiFlip6 .top-galaxiFlip6-colors
+   &__wrapper
+      padding-bottom: 60px
+   &__slide
+      @include flex-box(center, center)
+      flex-direction: column
+   &__text
+      padding: 20px 5px
+      p
+         text-align: center
+
+#rkt-galaxiFlip6 .top-galaxiFlip6-colors-pagination
+   top: auto
+   bottom: 5%
+   display: flex
+   justify-content: center
+
+#rkt-galaxiFlip6 .top-galaxiFlip6-colors-pagination .swiper-pagination-bullet
+   background: none
+   margin: 0
+   @include position($position: relative, $zIndex: 6)
+   width: 25px
+   height: 25px
+   margin-right: 15px
+   &:last-child
+      margin-right: 0
+   &:nth-child(1)
+      @include bg-image(url("../img/pag04_1.png"))
+   &:nth-child(2)
+      @include bg-image(url("../img/pag04_2.png"))
+   &:nth-child(3)
+      @include bg-image(url("../img/pag04_3.png"))
+   &:nth-child(4)
+      @include bg-image(url("../img/pag04_4.png"))
+
+#rkt-galaxiFlip6 .galaxiFlip6-foldables
+   &__brand
+      span
+         @include adaptiv-value("font-size", 32, 22)
+   &__text
+      p
+         span
+            @include adaptiv-value("font-size", 32, 22)
+            font-weight: 700
+
+#rkt-galaxiFlip6 .galaxiFlip6-ai-slider
+   &__inner
+      margin-bottom: 15px
+   &__title
+      padding: 0 10px
+   &__swiper
+      width: auto
+      overflow: visible
+   &__slide
+      padding-bottom: 40px
+   &__card
+      @include flex-box(space-between, flex-start)
+      flex-direction: column
+      padding: 15px 10px 0
+   &__image
+      img
+         @include adaptiv-value("border-radius", 25, 8)
+   &__text
+      padding: 0px 7px
+   &__next, &__prev
+      top: 50%
+   &__scrollbar
+      background: #f4f4f4
+
+#rkt-galaxiFlip6 .galaxiFlip6-ai-slider__scrollbar .swiper-scrollbar-drag
+   background: #000
+
+#rkt-galaxiFlip6 .galaxiFlip6-camera50Mp
+   &__bg
+      background-color: #000
+   &__title
+      padding: 15px 10px
+      h2
+         color: #fff
+   &__text
+      padding: 15px 10px
+      h3, p
+         color: #fff
+
+#rkt-galaxiFlip6 .galaxiFlip6-cameraAi
+   &__bg
+      background-color: #000
+   &__header
+      padding: 15px 10px
+      h3, p
+         color: #fff
+         text-align: center
+
+#rkt-galaxiFlip6 .galaxiFlip6-flexcam
+   &__text
+      h3, p
+         color: #fff
+   &__image
+      padding: 0 15px
+
+#rkt-galaxiFlip6 .galaxiFlip6-photoAssist-slider
+   &__bg
+      background-color: #000
+   &__inner
+      padding: 15px 0
+      overflow: hidden
+   &__title
+      padding: 0 10px
+      h4, h3
+         color: #fff
+      h3
+         text-align: center
+   &__swiper
+      width: auto
+      overflow: visible
+   &__slide
+      padding-bottom: 40px
+   &__card
+      @include flex-box(space-between, flex-start)
+      flex-direction: column
+      padding: 15px 10px 0
+   &__text
+      padding: 0px 7px
+      h3, p
+         color: #fff
+   &__next, &__prev
+      top: 40%
+
+#rkt-galaxiFlip6 .galaxiFlip6-battery
+   &__inner
+      align-items: stretch
+      h3, p
+         color: #fff
+   &__img
+      width: 80%
+      margin: 15px auto
+      img
+         margin: 0 auto
+   &__content-text
+      padding: 10px 15px
+      p
+         padding: 10px 0
+      span
+         display: inline-block
+         @include adaptiv-value("font-size", 36, 20)
+         color: #3782ff
+         font-weight: 900
+         text-align: center
+   &__content-item
+      display: flex
+      align-items: center
+      padding: 10px 15px
+      img
+         flex: 0 0 50px
+      p
+         flex: 1 1 auto
+         padding: 0 10px 0 15px
+
+#rkt-galaxiFlip6 .galaxiFlip6-columns
+   &__inner
+      margin: 15px 10px
+   &__title
+      padding: 0 10px
+      h3
+         text-align: center
+   &__cols
+      display: grid
+      gap: 15px
+   &__col
+      background: #f4f4f4
+      @include adaptiv-value("border-radius", 20, 8)
+      padding: 15px 10px
+
+#rkt-galaxiFlip6 .galaxiFlip6-app
+   &__inner
+      padding: 15px 10px
+      margin: 0 10px
+      background: #f4f4f4
+      @include adaptiv-value("border-radius", 20, 8)
+   &__image
+      img
+         margin: 0 auto
+   &__text
+      padding: 15px 10px
+      h5, p
+         text-align: center
+
+#rkt-galaxiFlip6 .aside
+   &__box
+      display: none
+
+//=========================================================================================================================================
+@media (min-width: $bp-mobile)
+   #rkt-galaxiFlip6 .galaxiFlip6-brand
+      img
+         margin: 0 10px
+   #rkt-galaxiFlip6 .galaxiFlip6-textBox
+      &__text
+         padding: 10px 20px
+   #rkt-galaxiFlip6 .swiper-button-next, #rkt-galaxiFlip6 .swiper-button-prev
+      display: block
+   #rkt-galaxiFlip6 .galaxiFlip6-impact
+      &__inner
+         width: 90%
+         margin: 25px auto
+   #rkt-galaxiFlip6 .row-rkt-galaxiFlip6
+      &__text
+         padding: 20px 10px
+         width: 90%
+         margin: 0 auto
+      &__image
+         padding: 0 10px
+   #rkt-galaxiFlip6 .galaxiFlip6-top
+      &__text
+         width: 100%
+   #rkt-galaxiFlip6 .top-galaxiFlip6-colors
+      &__slider
+         width: 70%
+         margin: 0 auto
+   #rkt-galaxiFlip6 .galaxiFlip6-cameraAi
+      &__header
+         padding: 15px 20px
+   #rkt-galaxiFlip6 .galaxiFlip6-columns
+      &__inner
+         margin: 15px 20px
+      &__title
+         padding: 20px 10px
+      &__col
+         padding: 20px 15px
+   #rkt-galaxiFlip6 .galaxiFlip6-app
+      &__inner
+         margin: 0 20px
+
+@media (min-width: $bp-tablet)
+   #rkt-galaxiFlip6 .row-rkt-galaxiFlip6
+      &__inner
+         flex-direction: row-reverse
+         &_rev
+            flex-direction: row
+      &__item
+         flex: 0 1 50%
+      &__text
+         padding: 10px 20px
+      &__image
+         flex: 0 1 50%
+   #rkt-galaxiFlip6 .galaxiFlip6-textBox
+      &__text
+         width: 80%
+         margin: 0 auto
+         padding: 20px
+   #rkt-galaxiFlip6 .galaxiFlip6-characteristics-slider
+      &__swiper
+         width: 65%
+         margin: 0
+      &__card
+         max-width: 900px
+         min-height: 360px
+   #rkt-galaxiFlip6 .swiper-button-next
+      top: 70%
+      right: 10px
+   #rkt-galaxiFlip6 .swiper-button-prev
+      top: 70%
+      left: 10px
+   #rkt-galaxiFlip6 .galaxiFlip6-impact
+      &__inner
+         margin: 35px auto
+         width: 80%
+   #rkt-galaxiFlip6 .galaxiFlip6-colors
+      &__header
+         @include flex-box(center, center)
+         gap: 15px
+         margin: 25px auto
+         width: 90%
+      &__title
+         flex: 1 1 auto
+         padding: 5px 10px
+         h2
+            text-align: left
+      &__text
+         flex: 0 0 auto
+         padding: 5px 10px
+         p
+            text-align: left
+      &__carousel
+         margin: 45px 0
+   #rkt-galaxiFlip6 .top-galaxiFlip6-colors
+      &__wrapper
+         padding-bottom: 80px
+      &__text
+         padding: 45px 10px
+   #rkt-galaxiFlip6 .row-rkt-galaxiFlip6
+      &__text
+         h4, h3, p
+            text-align: left
+   #rkt-galaxiFlip6 .galaxiFlip6-ai-slider
+      &__inner
+         margin-bottom: 25px
+      &__swiper
+         width: 65%
+         margin: 0
+      &__card
+         max-width: 900px
+         min-height: 360px
+      &__title
+         padding: 0 20px
+      &__next, &__prev
+         top: 45%
+   #rkt-galaxiFlip6 .galaxiFlip6-cameraAi
+      &__header
+         @include flex-box(center, center)
+         padding: 15px 0
+         width: 90%
+         margin: 0 auto
+         h3, p
+            text-align: left
+      &__title
+         padding: 25px 15px
+      &__text
+         padding: 25px 15px
+   #rkt-galaxiFlip6 .galaxiFlip6-photoAssist-slider
+      &__title
+         h4, h3
+            text-align: left
+      &__swiper
+         width: 65%
+         margin: 0
+      &__card
+         max-width: 900px
+         min-height: 360px
+      &__title
+         padding: 0 20px
+      &__next, &__prev
+         top: 45%
+   #rkt-galaxiFlip6 .swiper-button-next, #rkt-galaxiFlip6 .swiper-button-prev
+      &::after
+         width: 27px
+         height: 27px
+   #rkt-galaxiFlip6 .swiper-button-next
+      right: 15px
+   #rkt-galaxiFlip6 .swiper-button-prev
+      left: 15px
+   #rkt-galaxiFlip6 .galaxiFlip6-battery
+      &__inner
+         flex-direction: row
+         padding: 35px 20px
+      &__text
+         margin-bottom: 40px
+      &__img
+         margin: 0 20px
+      &__content
+         width: 90%
+         margin: 0 auto
+   #rkt-galaxiFlip6 .galaxiFlip6-columns
+      &__inner
+         width: 90%
+         margin: 0 auto 30px
+      &__cols
+         grid-template-columns: repeat(3, 1fr)
+      &__col
+         padding: 25px 20px
+      &__img
+         margin-bottom: 15px
+      &__text
+         h5
+            margin: 15px 0
+   #rkt-galaxiFlip6 .galaxiFlip6-app
+      &__inner
+         display: flex
+         align-items: center
+         gap: 20px
+         width: 90%
+         margin: 0 auto 30px
+         padding: 25px 10px
+      &__image
+         flex: 0 0 150px
+         padding: 0 20px
+         img
+            margin: 0
+      &__text
+         flex: 1 1 auto
+         h5, p
+            text-align: left
+   #rkt-galaxiFlip6 .galaxiFlip6-future
+      &__inner
+         width: 90%
+         margin: 0 auto 15px
+      &__text
+         h2
+            text-align: left
+
+@media (min-width: $bp-hd-desktop)
+   #rkt-galaxiFlip6 .rkt-galaxiFlip6
+      &__wrapper
+         display: flex
+         justify-content: center
+      &__container
+         padding: 0
+         margin: 0
+         h2
+            font-size: 26px
+            margin: 20px 0
+         h3
+            font-size: 22px
+            margin: 20px 0
+         h4
+            font-size: 18px
+         h5
+            font-size: 17px
+         p
+            font-size: 16px
+         ul
+            li
+               font-size: 16px
+      &__box
+         padding: 35px 0
+   #rkt-galaxiFlip6 .galaxiFlip6-brand
+      span
+         font-size: 20px
+   #rkt-galaxiFlip6 .galaxiFlip6-characteristics-slider
+      &__card
+         min-height: auto
+   #rkt-galaxiFlip6 .swiper-button-next, #rkt-galaxiFlip6 .swiper-button-prev
+      top: 60%
+   #rkt-galaxiFlip6 .top-galaxiFlip6-colors
+      &__slider
+         width: 60%
+   #rkt-galaxiFlip6 .galaxiFlip6-foldables
+      &__brand, &__text
+         span
+            font-size: 32px
+   #rkt-galaxiFlip6 .galaxiFlip6-ai-slider
+      &__next, &__prev
+         top: 45%
+   #rkt-galaxiFlip6 .galaxiFlip6-camera50Mp
+      padding: 35px 0 0
+   #rkt-galaxiFlip6 .galaxiFlip6-cameraAi
+      padding: 0
+      margin-top: -1px
+      &__header
+         width: 80%
+   #rkt-galaxiFlip6 .galaxiFlip6-photoAssist-slider
+      &__next, &__prev
+         top: 45%
+
+   #rkt-galaxiFlip6 .aside
+      &__box
+         display: block
+         box-sizing: border-box
+         background-color: #9ec898
+         flex: 0 0 360px
+//===============================================================================================================
+@media screen and (min-width: 1024px) and (max-width: 1200px)
+   #rkt-galaxiFlip6 .galaxiFlip6-characteristics-slider
+      &__card
+         min-height: 315px
+   #rkt-galaxiFlip6 .swiper-button-next, #rkt-galaxiFlip6 .swiper-button-prev
+      top: 70%
+   #rkt-galaxiFlip6 .galaxiFlip6-ai-slider
+      &__next, &__prev
+         top: 45%
+   #rkt-galaxiFlip6 .galaxiFlip6-photoAssist-slider
+      &__next, &__prev
+         top: 40%
+
+@media screen and (min-width: 1024px) and (max-width: 1100px)
+   #rkt-galaxiFlip6 .galaxiFlip6-columns
+      &__inner
+         width: 70%
+         margin: 0 auto
+      &__cols
+         grid-template-columns: 1fr
+   #rkt-galaxiFlip6 .galaxiFlip6-app
+      &__inner
+         width: 70%
+         gap: 0
